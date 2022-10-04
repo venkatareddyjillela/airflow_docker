@@ -1,0 +1,29 @@
+[2022-10-04T06:57:14.342+0000] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: dag_with_cron_expression_v1.greet scheduled__2022-09-22T00:00:00+00:00 [queued]>
+[2022-10-04T06:57:14.380+0000] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: dag_with_cron_expression_v1.greet scheduled__2022-09-22T00:00:00+00:00 [queued]>
+[2022-10-04T06:57:14.381+0000] {taskinstance.py:1362} INFO - 
+--------------------------------------------------------------------------------
+[2022-10-04T06:57:14.382+0000] {taskinstance.py:1363} INFO - Starting attempt 1 of 3
+[2022-10-04T06:57:14.382+0000] {taskinstance.py:1364} INFO - 
+--------------------------------------------------------------------------------
+[2022-10-04T06:57:14.457+0000] {taskinstance.py:1383} INFO - Executing <Task(BashOperator): greet> on 2022-09-22 00:00:00+00:00
+[2022-10-04T06:57:14.465+0000] {standard_task_runner.py:54} INFO - Started process 5152 to run task
+[2022-10-04T06:57:14.477+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'dag_with_cron_expression_v1', 'greet', 'scheduled__2022-09-22T00:00:00+00:00', '--job-id', '30', '--raw', '--subdir', 'DAGS_FOLDER/dag_with_cron_expression.py', '--cfg-path', '/tmp/tmpwyya2_dg']
+[2022-10-04T06:57:14.481+0000] {standard_task_runner.py:83} INFO - Job 30: Subtask greet
+[2022-10-04T06:57:14.483+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/***/dags/dag_with_cron_expression.py
+[2022-10-04T06:57:14.749+0000] {task_command.py:384} INFO - Running <TaskInstance: dag_with_cron_expression_v1.greet scheduled__2022-09-22T00:00:00+00:00 [running]> on host e877189be071
+[2022-10-04T06:57:14.991+0000] {taskinstance.py:1592} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=dag_with_cron_expression_v1
+AIRFLOW_CTX_TASK_ID=greet
+AIRFLOW_CTX_EXECUTION_DATE=2022-09-22T00:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-09-22T00:00:00+00:00
+[2022-10-04T06:57:14.993+0000] {subprocess.py:63} INFO - Tmp dir root location: 
+ /tmp
+[2022-10-04T06:57:14.995+0000] {subprocess.py:75} INFO - Running command: ['/bin/bash', '-c', 'echo "Hello World"']
+[2022-10-04T06:57:15.011+0000] {subprocess.py:86} INFO - Output:
+[2022-10-04T06:57:15.014+0000] {subprocess.py:93} INFO - Hello World
+[2022-10-04T06:57:15.015+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2022-10-04T06:57:15.091+0000] {taskinstance.py:1406} INFO - Marking task as SUCCESS. dag_id=dag_with_cron_expression_v1, task_id=greet, execution_date=20220922T000000, start_date=20221004T065714, end_date=20221004T065715
+[2022-10-04T06:57:15.172+0000] {local_task_job.py:164} INFO - Task exited with return code 0
+[2022-10-04T06:57:15.236+0000] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check

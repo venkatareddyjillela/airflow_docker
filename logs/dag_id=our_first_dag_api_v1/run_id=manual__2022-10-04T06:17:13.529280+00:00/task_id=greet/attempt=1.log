@@ -1,0 +1,50 @@
+[2022-10-04T06:17:15.832+0000] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: our_first_dag_api_v1.greet manual__2022-10-04T06:17:13.529280+00:00 [queued]>
+[2022-10-04T06:17:15.855+0000] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: our_first_dag_api_v1.greet manual__2022-10-04T06:17:13.529280+00:00 [queued]>
+[2022-10-04T06:17:15.855+0000] {taskinstance.py:1362} INFO - 
+--------------------------------------------------------------------------------
+[2022-10-04T06:17:15.856+0000] {taskinstance.py:1363} INFO - Starting attempt 1 of 3
+[2022-10-04T06:17:15.856+0000] {taskinstance.py:1364} INFO - 
+--------------------------------------------------------------------------------
+[2022-10-04T06:17:15.891+0000] {taskinstance.py:1383} INFO - Executing <Task(_PythonDecoratedOperator): greet> on 2022-10-04 06:17:13.529280+00:00
+[2022-10-04T06:17:15.898+0000] {standard_task_runner.py:54} INFO - Started process 1802 to run task
+[2022-10-04T06:17:15.904+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'our_first_dag_api_v1', 'greet', 'manual__2022-10-04T06:17:13.529280+00:00', '--job-id', '10', '--raw', '--subdir', 'DAGS_FOLDER/dag_with_taskflow_api.py', '--cfg-path', '/tmp/tmpc7w713w9']
+[2022-10-04T06:17:15.906+0000] {standard_task_runner.py:83} INFO - Job 10: Subtask greet
+[2022-10-04T06:17:15.908+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/***/dags/dag_with_taskflow_api.py
+[2022-10-04T06:17:15.957+0000] {logging_mixin.py:117} WARNING - /home/***/.local/lib/python3.7/site-packages/***/models/dag.py:3425 RemovedInAirflow3Warning: Param `schedule_interval` is deprecated and will be removed in a future release. Please use `schedule` instead.
+[2022-10-04T06:17:15.965+0000] {taskmixin.py:205} WARNING - Dependency <Task(_PythonDecoratedOperator): get_name>, greet already registered for DAG: our_first_dag_api_v1
+[2022-10-04T06:17:15.966+0000] {taskmixin.py:205} WARNING - Dependency <Task(_PythonDecoratedOperator): greet>, get_name already registered for DAG: our_first_dag_api_v1
+[2022-10-04T06:17:15.966+0000] {taskmixin.py:205} WARNING - Dependency <Task(_PythonDecoratedOperator): get_age>, greet already registered for DAG: our_first_dag_api_v1
+[2022-10-04T06:17:15.966+0000] {taskmixin.py:205} WARNING - Dependency <Task(_PythonDecoratedOperator): greet>, get_age already registered for DAG: our_first_dag_api_v1
+[2022-10-04T06:17:15.967+0000] {taskmixin.py:205} WARNING - Dependency <Task(_PythonDecoratedOperator): get_name>, greet already registered for DAG: our_first_dag_api_v1
+[2022-10-04T06:17:15.967+0000] {taskmixin.py:205} WARNING - Dependency <Task(_PythonDecoratedOperator): greet>, get_name already registered for DAG: our_first_dag_api_v1
+[2022-10-04T06:17:15.967+0000] {taskmixin.py:205} WARNING - Dependency <Task(_PythonDecoratedOperator): get_age>, greet already registered for DAG: our_first_dag_api_v1
+[2022-10-04T06:17:15.967+0000] {taskmixin.py:205} WARNING - Dependency <Task(_PythonDecoratedOperator): greet>, get_age already registered for DAG: our_first_dag_api_v1
+[2022-10-04T06:17:15.968+0000] {taskmixin.py:205} WARNING - Dependency <Task(_PythonDecoratedOperator): get_name>, greet already registered for DAG: our_first_dag_api_v1
+[2022-10-04T06:17:15.968+0000] {taskmixin.py:205} WARNING - Dependency <Task(_PythonDecoratedOperator): greet>, get_name already registered for DAG: our_first_dag_api_v1
+[2022-10-04T06:17:15.968+0000] {taskmixin.py:205} WARNING - Dependency <Task(_PythonDecoratedOperator): get_age>, greet already registered for DAG: our_first_dag_api_v1
+[2022-10-04T06:17:15.968+0000] {taskmixin.py:205} WARNING - Dependency <Task(_PythonDecoratedOperator): greet>, get_age already registered for DAG: our_first_dag_api_v1
+[2022-10-04T06:17:15.968+0000] {taskmixin.py:205} WARNING - Dependency <Task(_PythonDecoratedOperator): get_name>, greet already registered for DAG: our_first_dag_api_v1
+[2022-10-04T06:17:15.969+0000] {taskmixin.py:205} WARNING - Dependency <Task(_PythonDecoratedOperator): greet>, get_name already registered for DAG: our_first_dag_api_v1
+[2022-10-04T06:17:15.969+0000] {taskmixin.py:205} WARNING - Dependency <Task(_PythonDecoratedOperator): get_age>, greet already registered for DAG: our_first_dag_api_v1
+[2022-10-04T06:17:15.969+0000] {taskmixin.py:205} WARNING - Dependency <Task(_PythonDecoratedOperator): greet>, get_age already registered for DAG: our_first_dag_api_v1
+[2022-10-04T06:17:15.970+0000] {taskmixin.py:205} WARNING - Dependency <Task(_PythonDecoratedOperator): get_name>, greet already registered for DAG: our_first_dag_api_v1
+[2022-10-04T06:17:15.970+0000] {taskmixin.py:205} WARNING - Dependency <Task(_PythonDecoratedOperator): greet>, get_name already registered for DAG: our_first_dag_api_v1
+[2022-10-04T06:17:15.970+0000] {taskmixin.py:205} WARNING - Dependency <Task(_PythonDecoratedOperator): get_age>, greet already registered for DAG: our_first_dag_api_v1
+[2022-10-04T06:17:15.970+0000] {taskmixin.py:205} WARNING - Dependency <Task(_PythonDecoratedOperator): greet>, get_age already registered for DAG: our_first_dag_api_v1
+[2022-10-04T06:17:15.971+0000] {taskmixin.py:205} WARNING - Dependency <Task(_PythonDecoratedOperator): get_name>, greet already registered for DAG: our_first_dag_api_v1
+[2022-10-04T06:17:15.971+0000] {taskmixin.py:205} WARNING - Dependency <Task(_PythonDecoratedOperator): greet>, get_name already registered for DAG: our_first_dag_api_v1
+[2022-10-04T06:17:15.971+0000] {taskmixin.py:205} WARNING - Dependency <Task(_PythonDecoratedOperator): get_age>, greet already registered for DAG: our_first_dag_api_v1
+[2022-10-04T06:17:15.971+0000] {taskmixin.py:205} WARNING - Dependency <Task(_PythonDecoratedOperator): greet>, get_age already registered for DAG: our_first_dag_api_v1
+[2022-10-04T06:17:16.115+0000] {task_command.py:384} INFO - Running <TaskInstance: our_first_dag_api_v1.greet manual__2022-10-04T06:17:13.529280+00:00 [running]> on host e877189be071
+[2022-10-04T06:17:16.336+0000] {taskinstance.py:1592} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=our_first_dag_api_v1
+AIRFLOW_CTX_TASK_ID=greet
+AIRFLOW_CTX_EXECUTION_DATE=2022-10-04T06:17:13.529280+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2022-10-04T06:17:13.529280+00:00
+[2022-10-04T06:17:16.338+0000] {logging_mixin.py:117} INFO - Hello Venkata Reddy Jillela you are 25 years old!!!
+[2022-10-04T06:17:16.338+0000] {python.py:177} INFO - Done. Returned value was: None
+[2022-10-04T06:17:16.371+0000] {taskinstance.py:1406} INFO - Marking task as SUCCESS. dag_id=our_first_dag_api_v1, task_id=greet, execution_date=20221004T061713, start_date=20221004T061715, end_date=20221004T061716
+[2022-10-04T06:17:16.438+0000] {local_task_job.py:164} INFO - Task exited with return code 0
+[2022-10-04T06:17:16.491+0000] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check
