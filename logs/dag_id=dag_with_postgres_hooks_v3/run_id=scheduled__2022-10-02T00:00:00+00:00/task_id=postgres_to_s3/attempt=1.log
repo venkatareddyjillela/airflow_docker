@@ -1,0 +1,482 @@
+[2022-10-04T12:54:56.576+0000] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: dag_with_postgres_hooks_v3.postgres_to_s3 scheduled__2022-10-02T00:00:00+00:00 [queued]>
+[2022-10-04T12:54:56.609+0000] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: dag_with_postgres_hooks_v3.postgres_to_s3 scheduled__2022-10-02T00:00:00+00:00 [queued]>
+[2022-10-04T12:54:56.609+0000] {taskinstance.py:1362} INFO - 
+--------------------------------------------------------------------------------
+[2022-10-04T12:54:56.610+0000] {taskinstance.py:1363} INFO - Starting attempt 1 of 3
+[2022-10-04T12:54:56.610+0000] {taskinstance.py:1364} INFO - 
+--------------------------------------------------------------------------------
+[2022-10-04T12:54:56.660+0000] {taskinstance.py:1383} INFO - Executing <Task(PythonOperator): postgres_to_s3> on 2022-10-02 00:00:00+00:00
+[2022-10-04T12:54:56.670+0000] {standard_task_runner.py:54} INFO - Started process 19704 to run task
+[2022-10-04T12:54:56.677+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'dag_with_postgres_hooks_v3', 'postgres_to_s3', 'scheduled__2022-10-02T00:00:00+00:00', '--job-id', '127', '--raw', '--subdir', 'DAGS_FOLDER/dag_with_postgres_hooks.py', '--cfg-path', '/tmp/tmp00c59l7z']
+[2022-10-04T12:54:56.680+0000] {standard_task_runner.py:83} INFO - Job 127: Subtask postgres_to_s3
+[2022-10-04T12:54:56.684+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/***/dags/dag_with_postgres_hooks.py
+[2022-10-04T12:54:57.586+0000] {task_command.py:384} INFO - Running <TaskInstance: dag_with_postgres_hooks_v3.postgres_to_s3 scheduled__2022-10-02T00:00:00+00:00 [running]> on host fe59f3828ca7
+[2022-10-04T12:54:57.779+0000] {taskinstance.py:1592} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=dag_with_postgres_hooks_v3
+AIRFLOW_CTX_TASK_ID=postgres_to_s3
+AIRFLOW_CTX_EXECUTION_DATE=2022-10-02T00:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-10-02T00:00:00+00:00
+[2022-10-04T12:54:57.794+0000] {logging_mixin.py:117} WARNING - /home/***/.local/lib/python3.7/site-packages/***/utils/context.py:204 AirflowContextDeprecationWarning: Accessing 'next_ds_nodash' from the template is deprecated and will be removed in a future version. Please use '{{ data_interval_end | ds_nodash }}' instead.
+[2022-10-04T12:54:57.813+0000] {base.py:71} INFO - Using connection ID 'postgres_localhost' for task execution.
+[2022-10-04T12:54:57.847+0000] {dag_with_postgres_hooks.py:33} INFO - saved orders data to file : dags/get_orders_20221002.txt
+[2022-10-04T12:54:57.863+0000] {base.py:71} INFO - Using connection ID 'minio_conn' for task execution.
+[2022-10-04T12:54:57.867+0000] {connection_wrapper.py:303} INFO - AWS Connection (conn_id='minio_conn', conn_type='aws') credentials retrieved from login and password.
+[2022-10-04T12:54:57.870+0000] {logging_mixin.py:117} WARNING - /home/***/.local/lib/python3.7/site-packages/***/providers/amazon/aws/utils/connection_wrapper.py:8 DeprecationWarning: extra['host'] is deprecated and will be removed in a future release. Please set extra['endpoint_url'] instead
+[2022-10-04T12:54:58.024+0000] {taskinstance.py:1851} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 175, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 193, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/dag_with_postgres_hooks.py", line 41, in postgres_to_s3
+    replace=True
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 64, in wrapper
+    return func(*bound_args.args, **bound_args.kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 92, in wrapper
+    return func(*bound_args.args, **bound_args.kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 649, in load_file
+    client.upload_file(filename, bucket_name, key, ExtraArgs=extra_args, Config=self.transfer_config)
+  File "/home/airflow/.local/lib/python3.7/site-packages/boto3/s3/inject.py", line 148, in upload_file
+    callback=Callback,
+  File "/home/airflow/.local/lib/python3.7/site-packages/boto3/s3/transfer.py", line 288, in upload_file
+    future.result()
+  File "/home/airflow/.local/lib/python3.7/site-packages/s3transfer/futures.py", line 103, in result
+    return self._coordinator.result()
+  File "/home/airflow/.local/lib/python3.7/site-packages/s3transfer/futures.py", line 266, in result
+    raise self._exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/s3transfer/tasks.py", line 269, in _main
+    self._submit(transfer_future=transfer_future, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/s3transfer/upload.py", line 585, in _submit
+    upload_input_manager.provide_transfer_size(transfer_future)
+  File "/home/airflow/.local/lib/python3.7/site-packages/s3transfer/upload.py", line 244, in provide_transfer_size
+    self._osutil.get_file_size(transfer_future.meta.call_args.fileobj)
+  File "/home/airflow/.local/lib/python3.7/site-packages/s3transfer/utils.py", line 247, in get_file_size
+    return os.path.getsize(filename)
+  File "/usr/local/lib/python3.7/genericpath.py", line 50, in getsize
+    return os.stat(filename).st_size
+FileNotFoundError: [Errno 2] No such file or directory: 'dags/get_orders_20221002.txt'
+[2022-10-04T12:54:58.062+0000] {taskinstance.py:1406} INFO - Marking task as UP_FOR_RETRY. dag_id=dag_with_postgres_hooks_v3, task_id=postgres_to_s3, execution_date=20221002T000000, start_date=20221004T125456, end_date=20221004T125458
+[2022-10-04T12:54:58.117+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 127 for task postgres_to_s3 ([Errno 2] No such file or directory: 'dags/get_orders_20221002.txt'; 19704)
+[2022-10-04T12:54:58.227+0000] {local_task_job.py:164} INFO - Task exited with return code 1
+[2022-10-04T12:54:58.346+0000] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2022-10-04T12:56:13.393+0000] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: dag_with_postgres_hooks_v3.postgres_to_s3 scheduled__2022-10-02T00:00:00+00:00 [queued]>
+[2022-10-04T12:56:13.421+0000] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: dag_with_postgres_hooks_v3.postgres_to_s3 scheduled__2022-10-02T00:00:00+00:00 [queued]>
+[2022-10-04T12:56:13.422+0000] {taskinstance.py:1362} INFO - 
+--------------------------------------------------------------------------------
+[2022-10-04T12:56:13.422+0000] {taskinstance.py:1363} INFO - Starting attempt 1 of 3
+[2022-10-04T12:56:13.422+0000] {taskinstance.py:1364} INFO - 
+--------------------------------------------------------------------------------
+[2022-10-04T12:56:13.467+0000] {taskinstance.py:1383} INFO - Executing <Task(PythonOperator): postgres_to_s3> on 2022-10-02 00:00:00+00:00
+[2022-10-04T12:56:13.477+0000] {standard_task_runner.py:54} INFO - Started process 19871 to run task
+[2022-10-04T12:56:13.487+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'dag_with_postgres_hooks_v3', 'postgres_to_s3', 'scheduled__2022-10-02T00:00:00+00:00', '--job-id', '129', '--raw', '--subdir', 'DAGS_FOLDER/dag_with_postgres_hooks.py', '--cfg-path', '/tmp/tmp261j9qe3']
+[2022-10-04T12:56:13.490+0000] {standard_task_runner.py:83} INFO - Job 129: Subtask postgres_to_s3
+[2022-10-04T12:56:13.493+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/***/dags/dag_with_postgres_hooks.py
+[2022-10-04T12:56:14.327+0000] {task_command.py:384} INFO - Running <TaskInstance: dag_with_postgres_hooks_v3.postgres_to_s3 scheduled__2022-10-02T00:00:00+00:00 [running]> on host fe59f3828ca7
+[2022-10-04T12:56:14.517+0000] {taskinstance.py:1592} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=dag_with_postgres_hooks_v3
+AIRFLOW_CTX_TASK_ID=postgres_to_s3
+AIRFLOW_CTX_EXECUTION_DATE=2022-10-02T00:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-10-02T00:00:00+00:00
+[2022-10-04T12:56:14.534+0000] {logging_mixin.py:117} WARNING - /home/***/.local/lib/python3.7/site-packages/***/utils/context.py:204 AirflowContextDeprecationWarning: Accessing 'next_ds_nodash' from the template is deprecated and will be removed in a future version. Please use '{{ data_interval_end | ds_nodash }}' instead.
+[2022-10-04T12:56:14.556+0000] {base.py:71} INFO - Using connection ID 'postgres_localhost' for task execution.
+[2022-10-04T12:56:14.591+0000] {dag_with_postgres_hooks.py:36} INFO - saved orders data to file : dags/get_orders_20221002.txt
+[2022-10-04T12:56:14.606+0000] {base.py:71} INFO - Using connection ID 'minio_conn' for task execution.
+[2022-10-04T12:56:14.610+0000] {connection_wrapper.py:303} INFO - AWS Connection (conn_id='minio_conn', conn_type='aws') credentials retrieved from login and password.
+[2022-10-04T12:56:14.613+0000] {logging_mixin.py:117} WARNING - /home/***/.local/lib/python3.7/site-packages/***/providers/amazon/aws/utils/connection_wrapper.py:8 DeprecationWarning: extra['host'] is deprecated and will be removed in a future release. Please set extra['endpoint_url'] instead
+[2022-10-04T12:56:14.809+0000] {taskinstance.py:1851} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 175, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 193, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/dag_with_postgres_hooks.py", line 44, in postgres_to_s3
+    replace=True
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 64, in wrapper
+    return func(*bound_args.args, **bound_args.kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 92, in wrapper
+    return func(*bound_args.args, **bound_args.kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 649, in load_file
+    client.upload_file(filename, bucket_name, key, ExtraArgs=extra_args, Config=self.transfer_config)
+  File "/home/airflow/.local/lib/python3.7/site-packages/boto3/s3/inject.py", line 148, in upload_file
+    callback=Callback,
+  File "/home/airflow/.local/lib/python3.7/site-packages/boto3/s3/transfer.py", line 288, in upload_file
+    future.result()
+  File "/home/airflow/.local/lib/python3.7/site-packages/s3transfer/futures.py", line 103, in result
+    return self._coordinator.result()
+  File "/home/airflow/.local/lib/python3.7/site-packages/s3transfer/futures.py", line 266, in result
+    raise self._exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/s3transfer/tasks.py", line 269, in _main
+    self._submit(transfer_future=transfer_future, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/s3transfer/upload.py", line 585, in _submit
+    upload_input_manager.provide_transfer_size(transfer_future)
+  File "/home/airflow/.local/lib/python3.7/site-packages/s3transfer/upload.py", line 244, in provide_transfer_size
+    self._osutil.get_file_size(transfer_future.meta.call_args.fileobj)
+  File "/home/airflow/.local/lib/python3.7/site-packages/s3transfer/utils.py", line 247, in get_file_size
+    return os.path.getsize(filename)
+  File "/usr/local/lib/python3.7/genericpath.py", line 50, in getsize
+    return os.stat(filename).st_size
+FileNotFoundError: [Errno 2] No such file or directory: 'dags/get_orders_20221002.txt'
+[2022-10-04T12:56:14.839+0000] {taskinstance.py:1406} INFO - Marking task as UP_FOR_RETRY. dag_id=dag_with_postgres_hooks_v3, task_id=postgres_to_s3, execution_date=20221002T000000, start_date=20221004T125613, end_date=20221004T125614
+[2022-10-04T12:56:14.876+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 129 for task postgres_to_s3 ([Errno 2] No such file or directory: 'dags/get_orders_20221002.txt'; 19871)
+[2022-10-04T12:56:14.907+0000] {local_task_job.py:164} INFO - Task exited with return code 1
+[2022-10-04T12:56:14.960+0000] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2022-10-04T12:58:07.293+0000] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: dag_with_postgres_hooks_v3.postgres_to_s3 scheduled__2022-10-02T00:00:00+00:00 [queued]>
+[2022-10-04T12:58:07.325+0000] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: dag_with_postgres_hooks_v3.postgres_to_s3 scheduled__2022-10-02T00:00:00+00:00 [queued]>
+[2022-10-04T12:58:07.326+0000] {taskinstance.py:1362} INFO - 
+--------------------------------------------------------------------------------
+[2022-10-04T12:58:07.326+0000] {taskinstance.py:1363} INFO - Starting attempt 1 of 3
+[2022-10-04T12:58:07.326+0000] {taskinstance.py:1364} INFO - 
+--------------------------------------------------------------------------------
+[2022-10-04T12:58:07.381+0000] {taskinstance.py:1383} INFO - Executing <Task(PythonOperator): postgres_to_s3> on 2022-10-02 00:00:00+00:00
+[2022-10-04T12:58:07.390+0000] {standard_task_runner.py:54} INFO - Started process 20107 to run task
+[2022-10-04T12:58:07.397+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'dag_with_postgres_hooks_v3', 'postgres_to_s3', 'scheduled__2022-10-02T00:00:00+00:00', '--job-id', '131', '--raw', '--subdir', 'DAGS_FOLDER/dag_with_postgres_hooks.py', '--cfg-path', '/tmp/tmpa948u8pd']
+[2022-10-04T12:58:07.400+0000] {standard_task_runner.py:83} INFO - Job 131: Subtask postgres_to_s3
+[2022-10-04T12:58:07.403+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/***/dags/dag_with_postgres_hooks.py
+[2022-10-04T12:58:08.160+0000] {task_command.py:384} INFO - Running <TaskInstance: dag_with_postgres_hooks_v3.postgres_to_s3 scheduled__2022-10-02T00:00:00+00:00 [running]> on host fe59f3828ca7
+[2022-10-04T12:58:08.340+0000] {taskinstance.py:1592} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=dag_with_postgres_hooks_v3
+AIRFLOW_CTX_TASK_ID=postgres_to_s3
+AIRFLOW_CTX_EXECUTION_DATE=2022-10-02T00:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-10-02T00:00:00+00:00
+[2022-10-04T12:58:08.352+0000] {logging_mixin.py:117} WARNING - /home/***/.local/lib/python3.7/site-packages/***/utils/context.py:204 AirflowContextDeprecationWarning: Accessing 'next_ds_nodash' from the template is deprecated and will be removed in a future version. Please use '{{ data_interval_end | ds_nodash }}' instead.
+[2022-10-04T12:58:08.374+0000] {base.py:71} INFO - Using connection ID 'postgres_localhost' for task execution.
+[2022-10-04T12:58:08.411+0000] {dag_with_postgres_hooks.py:36} INFO - saved orders data to file : dags/get_orders_20221002.txt
+[2022-10-04T12:58:08.427+0000] {base.py:71} INFO - Using connection ID 'minio_conn' for task execution.
+[2022-10-04T12:58:08.431+0000] {connection_wrapper.py:303} INFO - AWS Connection (conn_id='minio_conn', conn_type='aws') credentials retrieved from login and password.
+[2022-10-04T12:58:08.435+0000] {logging_mixin.py:117} WARNING - /home/***/.local/lib/python3.7/site-packages/***/providers/amazon/aws/utils/connection_wrapper.py:8 DeprecationWarning: extra['host'] is deprecated and will be removed in a future release. Please set extra['endpoint_url'] instead
+[2022-10-04T12:58:08.612+0000] {taskinstance.py:1851} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/boto3/s3/transfer.py", line 288, in upload_file
+    future.result()
+  File "/home/airflow/.local/lib/python3.7/site-packages/s3transfer/futures.py", line 103, in result
+    return self._coordinator.result()
+  File "/home/airflow/.local/lib/python3.7/site-packages/s3transfer/futures.py", line 266, in result
+    raise self._exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/s3transfer/tasks.py", line 139, in __call__
+    return self._execute_main(kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/s3transfer/tasks.py", line 162, in _execute_main
+    return_value = self._main(**kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/s3transfer/upload.py", line 758, in _main
+    client.put_object(Bucket=bucket, Key=key, Body=body, **extra_args)
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/client.py", line 514, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/client.py", line 938, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.exceptions.ClientError: An error occurred (InvalidArgument) when calling the PutObject operation: S3 API Requests must be made to API port.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 175, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 193, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/dag_with_postgres_hooks.py", line 44, in postgres_to_s3
+    replace=True
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 64, in wrapper
+    return func(*bound_args.args, **bound_args.kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 92, in wrapper
+    return func(*bound_args.args, **bound_args.kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 649, in load_file
+    client.upload_file(filename, bucket_name, key, ExtraArgs=extra_args, Config=self.transfer_config)
+  File "/home/airflow/.local/lib/python3.7/site-packages/boto3/s3/inject.py", line 148, in upload_file
+    callback=Callback,
+  File "/home/airflow/.local/lib/python3.7/site-packages/boto3/s3/transfer.py", line 296, in upload_file
+    filename, '/'.join([bucket, key]), e
+boto3.exceptions.S3UploadFailedError: Failed to upload /tmp/tmplk02z22q20221002 to ***/orders_20221002.txt: An error occurred (InvalidArgument) when calling the PutObject operation: S3 API Requests must be made to API port.
+[2022-10-04T12:58:08.634+0000] {taskinstance.py:1406} INFO - Marking task as UP_FOR_RETRY. dag_id=dag_with_postgres_hooks_v3, task_id=postgres_to_s3, execution_date=20221002T000000, start_date=20221004T125807, end_date=20221004T125808
+[2022-10-04T12:58:08.676+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 131 for task postgres_to_s3 (Failed to upload /tmp/tmplk02z22q20221002 to ***/orders_20221002.txt: An error occurred (InvalidArgument) when calling the PutObject operation: S3 API Requests must be made to API port.; 20107)
+[2022-10-04T12:58:08.737+0000] {local_task_job.py:164} INFO - Task exited with return code 1
+[2022-10-04T12:58:08.783+0000] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2022-10-04T13:03:08.348+0000] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: dag_with_postgres_hooks_v3.postgres_to_s3 scheduled__2022-10-02T00:00:00+00:00 [queued]>
+[2022-10-04T13:03:08.377+0000] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: dag_with_postgres_hooks_v3.postgres_to_s3 scheduled__2022-10-02T00:00:00+00:00 [queued]>
+[2022-10-04T13:03:08.378+0000] {taskinstance.py:1362} INFO - 
+--------------------------------------------------------------------------------
+[2022-10-04T13:03:08.378+0000] {taskinstance.py:1363} INFO - Starting attempt 1 of 3
+[2022-10-04T13:03:08.379+0000] {taskinstance.py:1364} INFO - 
+--------------------------------------------------------------------------------
+[2022-10-04T13:03:08.423+0000] {taskinstance.py:1383} INFO - Executing <Task(PythonOperator): postgres_to_s3> on 2022-10-02 00:00:00+00:00
+[2022-10-04T13:03:08.433+0000] {standard_task_runner.py:54} INFO - Started process 20723 to run task
+[2022-10-04T13:03:08.441+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'dag_with_postgres_hooks_v3', 'postgres_to_s3', 'scheduled__2022-10-02T00:00:00+00:00', '--job-id', '133', '--raw', '--subdir', 'DAGS_FOLDER/dag_with_postgres_hooks.py', '--cfg-path', '/tmp/tmp2jm24m3x']
+[2022-10-04T13:03:08.446+0000] {standard_task_runner.py:83} INFO - Job 133: Subtask postgres_to_s3
+[2022-10-04T13:03:08.449+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/***/dags/dag_with_postgres_hooks.py
+[2022-10-04T13:03:09.256+0000] {task_command.py:384} INFO - Running <TaskInstance: dag_with_postgres_hooks_v3.postgres_to_s3 scheduled__2022-10-02T00:00:00+00:00 [running]> on host fe59f3828ca7
+[2022-10-04T13:03:09.428+0000] {taskinstance.py:1592} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=dag_with_postgres_hooks_v3
+AIRFLOW_CTX_TASK_ID=postgres_to_s3
+AIRFLOW_CTX_EXECUTION_DATE=2022-10-02T00:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-10-02T00:00:00+00:00
+[2022-10-04T13:03:09.443+0000] {logging_mixin.py:117} WARNING - /home/***/.local/lib/python3.7/site-packages/***/utils/context.py:204 AirflowContextDeprecationWarning: Accessing 'next_ds_nodash' from the template is deprecated and will be removed in a future version. Please use '{{ data_interval_end | ds_nodash }}' instead.
+[2022-10-04T13:03:09.464+0000] {base.py:71} INFO - Using connection ID 'postgres_localhost' for task execution.
+[2022-10-04T13:03:09.509+0000] {dag_with_postgres_hooks.py:36} INFO - saved orders data to file : dags/get_orders_20221002.txt
+[2022-10-04T13:03:09.530+0000] {base.py:71} INFO - Using connection ID 'minio_conn' for task execution.
+[2022-10-04T13:03:09.534+0000] {connection_wrapper.py:303} INFO - AWS Connection (conn_id='minio_conn', conn_type='aws') credentials retrieved from login and password.
+[2022-10-04T13:03:09.538+0000] {logging_mixin.py:117} WARNING - /home/***/.local/lib/python3.7/site-packages/***/providers/amazon/aws/utils/connection_wrapper.py:8 DeprecationWarning: extra['host'] is deprecated and will be removed in a future release. Please set extra['endpoint_url'] instead
+[2022-10-04T13:03:25.158+0000] {taskinstance.py:1851} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/urllib3/connection.py", line 175, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw
+  File "/home/airflow/.local/lib/python3.7/site-packages/urllib3/util/connection.py", line 95, in create_connection
+    raise err
+  File "/home/airflow/.local/lib/python3.7/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/httpsession.py", line 464, in send
+    chunked=self._chunked(request.headers),
+  File "/home/airflow/.local/lib/python3.7/site-packages/urllib3/connectionpool.py", line 788, in urlopen
+    method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+  File "/home/airflow/.local/lib/python3.7/site-packages/urllib3/util/retry.py", line 525, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+  File "/home/airflow/.local/lib/python3.7/site-packages/urllib3/packages/six.py", line 770, in reraise
+    raise value
+  File "/home/airflow/.local/lib/python3.7/site-packages/urllib3/connectionpool.py", line 710, in urlopen
+    chunked=chunked,
+  File "/home/airflow/.local/lib/python3.7/site-packages/urllib3/connectionpool.py", line 398, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "/home/airflow/.local/lib/python3.7/site-packages/urllib3/connection.py", line 239, in request
+    super(HTTPConnection, self).request(method, url, body=body, headers=headers)
+  File "/usr/local/lib/python3.7/http/client.py", line 1281, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/awsrequest.py", line 95, in _send_request
+    method, url, body, headers, *args, **kwargs
+  File "/usr/local/lib/python3.7/http/client.py", line 1327, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/usr/local/lib/python3.7/http/client.py", line 1276, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/awsrequest.py", line 123, in _send_output
+    self.send(msg)
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/awsrequest.py", line 218, in send
+    return super().send(str)
+  File "/usr/local/lib/python3.7/http/client.py", line 976, in send
+    self.connect()
+  File "/home/airflow/.local/lib/python3.7/site-packages/urllib3/connection.py", line 205, in connect
+    conn = self._new_conn()
+  File "/home/airflow/.local/lib/python3.7/site-packages/urllib3/connection.py", line 187, in _new_conn
+    self, "Failed to establish a new connection: %s" % e
+urllib3.exceptions.NewConnectionError: <botocore.awsrequest.AWSHTTPConnection object at 0x7f2a3751bdd0>: Failed to establish a new connection: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 175, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 193, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/dag_with_postgres_hooks.py", line 44, in postgres_to_s3
+    replace=True
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 64, in wrapper
+    return func(*bound_args.args, **bound_args.kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 92, in wrapper
+    return func(*bound_args.args, **bound_args.kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 649, in load_file
+    client.upload_file(filename, bucket_name, key, ExtraArgs=extra_args, Config=self.transfer_config)
+  File "/home/airflow/.local/lib/python3.7/site-packages/boto3/s3/inject.py", line 148, in upload_file
+    callback=Callback,
+  File "/home/airflow/.local/lib/python3.7/site-packages/boto3/s3/transfer.py", line 288, in upload_file
+    future.result()
+  File "/home/airflow/.local/lib/python3.7/site-packages/s3transfer/futures.py", line 103, in result
+    return self._coordinator.result()
+  File "/home/airflow/.local/lib/python3.7/site-packages/s3transfer/futures.py", line 266, in result
+    raise self._exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/s3transfer/tasks.py", line 139, in __call__
+    return self._execute_main(kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/s3transfer/tasks.py", line 162, in _execute_main
+    return_value = self._main(**kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/s3transfer/upload.py", line 758, in _main
+    client.put_object(Bucket=bucket, Key=key, Body=body, **extra_args)
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/client.py", line 514, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/client.py", line 922, in _make_api_call
+    operation_model, request_dict, request_context
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/client.py", line 944, in _make_request
+    return self._endpoint.make_request(operation_model, request_dict)
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/endpoint.py", line 119, in make_request
+    return self._send_request(request_dict, operation_model)
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/endpoint.py", line 207, in _send_request
+    exception,
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/endpoint.py", line 361, in _needs_retry
+    request_dict=request_dict,
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/hooks.py", line 412, in emit
+    return self._emitter.emit(aliased_event_name, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/hooks.py", line 256, in emit
+    return self._emit(event_name, kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/hooks.py", line 239, in _emit
+    response = handler(**kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/retryhandler.py", line 207, in __call__
+    if self._checker(**checker_kwargs):
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/retryhandler.py", line 285, in __call__
+    attempt_number, response, caught_exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/retryhandler.py", line 320, in _should_retry
+    return self._checker(attempt_number, response, caught_exception)
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/retryhandler.py", line 364, in __call__
+    attempt_number, response, caught_exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/retryhandler.py", line 248, in __call__
+    attempt_number, caught_exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/retryhandler.py", line 416, in _check_caught_exception
+    raise caught_exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/endpoint.py", line 281, in _do_get_response
+    http_response = self._send(request)
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/endpoint.py", line 377, in _send
+    return self.http_session.send(request)
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/httpsession.py", line 484, in send
+    raise EndpointConnectionError(endpoint_url=request.url, error=e)
+botocore.exceptions.EndpointConnectionError: Could not connect to the endpoint URL: "http://host.docker.internal:9001/***/orders_20221002.txt"
+[2022-10-04T13:03:25.188+0000] {taskinstance.py:1406} INFO - Marking task as UP_FOR_RETRY. dag_id=dag_with_postgres_hooks_v3, task_id=postgres_to_s3, execution_date=20221002T000000, start_date=20221004T130308, end_date=20221004T130325
+[2022-10-04T13:03:25.234+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 133 for task postgres_to_s3 (Could not connect to the endpoint URL: "http://host.docker.internal:9001/***/orders_20221002.txt"; 20723)
+[2022-10-04T13:03:25.275+0000] {local_task_job.py:164} INFO - Task exited with return code 1
+[2022-10-04T13:03:25.326+0000] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2022-10-04T13:05:41.911+0000] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: dag_with_postgres_hooks_v3.postgres_to_s3 scheduled__2022-10-02T00:00:00+00:00 [queued]>
+[2022-10-04T13:05:41.949+0000] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: dag_with_postgres_hooks_v3.postgres_to_s3 scheduled__2022-10-02T00:00:00+00:00 [queued]>
+[2022-10-04T13:05:41.949+0000] {taskinstance.py:1362} INFO - 
+--------------------------------------------------------------------------------
+[2022-10-04T13:05:41.950+0000] {taskinstance.py:1363} INFO - Starting attempt 1 of 3
+[2022-10-04T13:05:41.950+0000] {taskinstance.py:1364} INFO - 
+--------------------------------------------------------------------------------
+[2022-10-04T13:05:42.002+0000] {taskinstance.py:1383} INFO - Executing <Task(PythonOperator): postgres_to_s3> on 2022-10-02 00:00:00+00:00
+[2022-10-04T13:05:42.011+0000] {standard_task_runner.py:54} INFO - Started process 21040 to run task
+[2022-10-04T13:05:42.022+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'dag_with_postgres_hooks_v3', 'postgres_to_s3', 'scheduled__2022-10-02T00:00:00+00:00', '--job-id', '136', '--raw', '--subdir', 'DAGS_FOLDER/dag_with_postgres_hooks.py', '--cfg-path', '/tmp/tmprlm8mybi']
+[2022-10-04T13:05:42.026+0000] {standard_task_runner.py:83} INFO - Job 136: Subtask postgres_to_s3
+[2022-10-04T13:05:42.030+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/***/dags/dag_with_postgres_hooks.py
+[2022-10-04T13:05:43.798+0000] {task_command.py:384} INFO - Running <TaskInstance: dag_with_postgres_hooks_v3.postgres_to_s3 scheduled__2022-10-02T00:00:00+00:00 [running]> on host fe59f3828ca7
+[2022-10-04T13:05:44.239+0000] {taskinstance.py:1592} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=dag_with_postgres_hooks_v3
+AIRFLOW_CTX_TASK_ID=postgres_to_s3
+AIRFLOW_CTX_EXECUTION_DATE=2022-10-02T00:00:00+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=scheduled__2022-10-02T00:00:00+00:00
+[2022-10-04T13:05:44.264+0000] {logging_mixin.py:117} WARNING - /home/***/.local/lib/python3.7/site-packages/***/utils/context.py:204 AirflowContextDeprecationWarning: Accessing 'next_ds_nodash' from the template is deprecated and will be removed in a future version. Please use '{{ data_interval_end | ds_nodash }}' instead.
+[2022-10-04T13:05:44.289+0000] {base.py:71} INFO - Using connection ID 'postgres_localhost' for task execution.
+[2022-10-04T13:05:44.339+0000] {dag_with_postgres_hooks.py:36} INFO - saved orders data to file : dags/get_orders_20221002.txt
+[2022-10-04T13:05:44.361+0000] {base.py:71} INFO - Using connection ID 'minio_conn' for task execution.
+[2022-10-04T13:05:44.365+0000] {connection_wrapper.py:303} INFO - AWS Connection (conn_id='minio_conn', conn_type='aws') credentials retrieved from login and password.
+[2022-10-04T13:05:44.368+0000] {logging_mixin.py:117} WARNING - /home/***/.local/lib/python3.7/site-packages/***/providers/amazon/aws/utils/connection_wrapper.py:8 DeprecationWarning: extra['host'] is deprecated and will be removed in a future release. Please set extra['endpoint_url'] instead
+[2022-10-04T13:06:03.947+0000] {taskinstance.py:1851} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/urllib3/connection.py", line 175, in _new_conn
+    (self._dns_host, self.port), self.timeout, **extra_kw
+  File "/home/airflow/.local/lib/python3.7/site-packages/urllib3/util/connection.py", line 95, in create_connection
+    raise err
+  File "/home/airflow/.local/lib/python3.7/site-packages/urllib3/util/connection.py", line 85, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/httpsession.py", line 464, in send
+    chunked=self._chunked(request.headers),
+  File "/home/airflow/.local/lib/python3.7/site-packages/urllib3/connectionpool.py", line 788, in urlopen
+    method, url, error=e, _pool=self, _stacktrace=sys.exc_info()[2]
+  File "/home/airflow/.local/lib/python3.7/site-packages/urllib3/util/retry.py", line 525, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+  File "/home/airflow/.local/lib/python3.7/site-packages/urllib3/packages/six.py", line 770, in reraise
+    raise value
+  File "/home/airflow/.local/lib/python3.7/site-packages/urllib3/connectionpool.py", line 710, in urlopen
+    chunked=chunked,
+  File "/home/airflow/.local/lib/python3.7/site-packages/urllib3/connectionpool.py", line 398, in _make_request
+    conn.request(method, url, **httplib_request_kw)
+  File "/home/airflow/.local/lib/python3.7/site-packages/urllib3/connection.py", line 239, in request
+    super(HTTPConnection, self).request(method, url, body=body, headers=headers)
+  File "/usr/local/lib/python3.7/http/client.py", line 1281, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/awsrequest.py", line 95, in _send_request
+    method, url, body, headers, *args, **kwargs
+  File "/usr/local/lib/python3.7/http/client.py", line 1327, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/usr/local/lib/python3.7/http/client.py", line 1276, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/awsrequest.py", line 123, in _send_output
+    self.send(msg)
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/awsrequest.py", line 218, in send
+    return super().send(str)
+  File "/usr/local/lib/python3.7/http/client.py", line 976, in send
+    self.connect()
+  File "/home/airflow/.local/lib/python3.7/site-packages/urllib3/connection.py", line 205, in connect
+    conn = self._new_conn()
+  File "/home/airflow/.local/lib/python3.7/site-packages/urllib3/connection.py", line 187, in _new_conn
+    self, "Failed to establish a new connection: %s" % e
+urllib3.exceptions.NewConnectionError: <botocore.awsrequest.AWSHTTPConnection object at 0x7f2a37520610>: Failed to establish a new connection: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 175, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/python.py", line 193, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/dag_with_postgres_hooks.py", line 44, in postgres_to_s3
+    replace=True
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 64, in wrapper
+    return func(*bound_args.args, **bound_args.kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 92, in wrapper
+    return func(*bound_args.args, **bound_args.kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/amazon/aws/hooks/s3.py", line 649, in load_file
+    client.upload_file(filename, bucket_name, key, ExtraArgs=extra_args, Config=self.transfer_config)
+  File "/home/airflow/.local/lib/python3.7/site-packages/boto3/s3/inject.py", line 148, in upload_file
+    callback=Callback,
+  File "/home/airflow/.local/lib/python3.7/site-packages/boto3/s3/transfer.py", line 288, in upload_file
+    future.result()
+  File "/home/airflow/.local/lib/python3.7/site-packages/s3transfer/futures.py", line 103, in result
+    return self._coordinator.result()
+  File "/home/airflow/.local/lib/python3.7/site-packages/s3transfer/futures.py", line 266, in result
+    raise self._exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/s3transfer/tasks.py", line 139, in __call__
+    return self._execute_main(kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/s3transfer/tasks.py", line 162, in _execute_main
+    return_value = self._main(**kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/s3transfer/upload.py", line 758, in _main
+    client.put_object(Bucket=bucket, Key=key, Body=body, **extra_args)
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/client.py", line 514, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/client.py", line 922, in _make_api_call
+    operation_model, request_dict, request_context
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/client.py", line 944, in _make_request
+    return self._endpoint.make_request(operation_model, request_dict)
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/endpoint.py", line 119, in make_request
+    return self._send_request(request_dict, operation_model)
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/endpoint.py", line 207, in _send_request
+    exception,
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/endpoint.py", line 361, in _needs_retry
+    request_dict=request_dict,
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/hooks.py", line 412, in emit
+    return self._emitter.emit(aliased_event_name, **kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/hooks.py", line 256, in emit
+    return self._emit(event_name, kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/hooks.py", line 239, in _emit
+    response = handler(**kwargs)
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/retryhandler.py", line 207, in __call__
+    if self._checker(**checker_kwargs):
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/retryhandler.py", line 285, in __call__
+    attempt_number, response, caught_exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/retryhandler.py", line 320, in _should_retry
+    return self._checker(attempt_number, response, caught_exception)
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/retryhandler.py", line 364, in __call__
+    attempt_number, response, caught_exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/retryhandler.py", line 248, in __call__
+    attempt_number, caught_exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/retryhandler.py", line 416, in _check_caught_exception
+    raise caught_exception
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/endpoint.py", line 281, in _do_get_response
+    http_response = self._send(request)
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/endpoint.py", line 377, in _send
+    return self.http_session.send(request)
+  File "/home/airflow/.local/lib/python3.7/site-packages/botocore/httpsession.py", line 484, in send
+    raise EndpointConnectionError(endpoint_url=request.url, error=e)
+botocore.exceptions.EndpointConnectionError: Could not connect to the endpoint URL: "http://host.docker.internal:9001/***/orders_20221002.txt"
+[2022-10-04T13:06:03.975+0000] {taskinstance.py:1406} INFO - Marking task as UP_FOR_RETRY. dag_id=dag_with_postgres_hooks_v3, task_id=postgres_to_s3, execution_date=20221002T000000, start_date=20221004T130541, end_date=20221004T130603
+[2022-10-04T13:06:04.010+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 136 for task postgres_to_s3 (Could not connect to the endpoint URL: "http://host.docker.internal:9001/***/orders_20221002.txt"; 21040)
+[2022-10-04T13:06:04.049+0000] {local_task_job.py:164} INFO - Task exited with return code 1
+[2022-10-04T13:06:04.089+0000] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check

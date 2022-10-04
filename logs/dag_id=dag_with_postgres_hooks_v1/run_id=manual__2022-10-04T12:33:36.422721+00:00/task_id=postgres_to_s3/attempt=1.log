@@ -1,0 +1,27 @@
+[2022-10-04T12:33:38.263+0000] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: dag_with_postgres_hooks_v1.postgres_to_s3 manual__2022-10-04T12:33:36.422721+00:00 [queued]>
+[2022-10-04T12:33:38.289+0000] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: dag_with_postgres_hooks_v1.postgres_to_s3 manual__2022-10-04T12:33:36.422721+00:00 [queued]>
+[2022-10-04T12:33:38.289+0000] {taskinstance.py:1362} INFO - 
+--------------------------------------------------------------------------------
+[2022-10-04T12:33:38.290+0000] {taskinstance.py:1363} INFO - Starting attempt 1 of 3
+[2022-10-04T12:33:38.290+0000] {taskinstance.py:1364} INFO - 
+--------------------------------------------------------------------------------
+[2022-10-04T12:33:38.329+0000] {taskinstance.py:1383} INFO - Executing <Task(PythonOperator): postgres_to_s3> on 2022-10-04 12:33:36.422721+00:00
+[2022-10-04T12:33:38.341+0000] {standard_task_runner.py:54} INFO - Started process 16651 to run task
+[2022-10-04T12:33:38.348+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'dag_with_postgres_hooks_v1', 'postgres_to_s3', 'manual__2022-10-04T12:33:36.422721+00:00', '--job-id', '117', '--raw', '--subdir', 'DAGS_FOLDER/dag_with_postgres_hooks.py', '--cfg-path', '/tmp/tmp1nuplooe']
+[2022-10-04T12:33:38.350+0000] {standard_task_runner.py:83} INFO - Job 117: Subtask postgres_to_s3
+[2022-10-04T12:33:38.353+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/***/dags/dag_with_postgres_hooks.py
+[2022-10-04T12:33:38.862+0000] {task_command.py:384} INFO - Running <TaskInstance: dag_with_postgres_hooks_v1.postgres_to_s3 manual__2022-10-04T12:33:36.422721+00:00 [running]> on host fe59f3828ca7
+[2022-10-04T12:33:39.164+0000] {taskinstance.py:1592} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=dag_with_postgres_hooks_v1
+AIRFLOW_CTX_TASK_ID=postgres_to_s3
+AIRFLOW_CTX_EXECUTION_DATE=2022-10-04T12:33:36.422721+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2022-10-04T12:33:36.422721+00:00
+[2022-10-04T12:33:39.185+0000] {logging_mixin.py:117} WARNING - /home/***/.local/lib/python3.7/site-packages/***/utils/context.py:204 AirflowContextDeprecationWarning: Accessing 'next_ds_nodash' from the template is deprecated and will be removed in a future version. Please use '{{ data_interval_end | ds_nodash }}' instead.
+[2022-10-04T12:33:39.218+0000] {base.py:71} INFO - Using connection ID 'postgres_localhost' for task execution.
+[2022-10-04T12:33:39.263+0000] {dag_with_postgres_hooks.py:27} INFO - saved orders data to file : dags/get_orders_20221004.txt
+[2022-10-04T12:33:39.264+0000] {python.py:177} INFO - Done. Returned value was: None
+[2022-10-04T12:33:39.300+0000] {taskinstance.py:1406} INFO - Marking task as SUCCESS. dag_id=dag_with_postgres_hooks_v1, task_id=postgres_to_s3, execution_date=20221004T123336, start_date=20221004T123338, end_date=20221004T123339
+[2022-10-04T12:33:39.371+0000] {local_task_job.py:164} INFO - Task exited with return code 0
+[2022-10-04T12:33:39.447+0000] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check

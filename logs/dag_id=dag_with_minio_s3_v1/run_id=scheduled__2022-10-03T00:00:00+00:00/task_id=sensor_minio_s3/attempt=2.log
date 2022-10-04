@@ -1,0 +1,15 @@
+[2022-10-04T11:45:32.796+0000] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: dag_with_minio_s3_v1.sensor_minio_s3 scheduled__2022-10-03T00:00:00+00:00 [queued]>
+[2022-10-04T11:45:32.828+0000] {taskinstance.py:1165} INFO - Dependencies all met for <TaskInstance: dag_with_minio_s3_v1.sensor_minio_s3 scheduled__2022-10-03T00:00:00+00:00 [queued]>
+[2022-10-04T11:45:32.829+0000] {taskinstance.py:1362} INFO - 
+--------------------------------------------------------------------------------
+[2022-10-04T11:45:32.829+0000] {taskinstance.py:1363} INFO - Starting attempt 2 of 3
+[2022-10-04T11:45:32.830+0000] {taskinstance.py:1364} INFO - 
+--------------------------------------------------------------------------------
+[2022-10-04T11:45:32.875+0000] {taskinstance.py:1383} INFO - Executing <Task(S3KeySensor): sensor_minio_s3> on 2022-10-03 00:00:00+00:00
+[2022-10-04T11:45:32.885+0000] {standard_task_runner.py:54} INFO - Started process 10471 to run task
+[2022-10-04T11:45:32.896+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'dag_with_minio_s3_v1', 'sensor_minio_s3', 'scheduled__2022-10-03T00:00:00+00:00', '--job-id', '99', '--raw', '--subdir', 'DAGS_FOLDER/dag_with_minio_s3.py', '--cfg-path', '/tmp/tmpfs58655j']
+[2022-10-04T11:45:32.900+0000] {standard_task_runner.py:83} INFO - Job 99: Subtask sensor_minio_s3
+[2022-10-04T11:45:32.902+0000] {dagbag.py:525} INFO - Filling up the DagBag from /opt/***/dags/dag_with_minio_s3.py
+[2022-10-04T11:45:33.299+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 99 for task sensor_minio_s3 (Dag 'dag_with_minio_s3_v1' could not be found; either it does not exist or it failed to parse.; 10471)
+[2022-10-04T11:45:33.347+0000] {local_task_job.py:164} INFO - Task exited with return code 1
+[2022-10-04T11:45:33.372+0000] {local_task_job.py:273} INFO - 0 downstream tasks scheduled from follow-on schedule check
